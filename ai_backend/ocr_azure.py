@@ -52,13 +52,19 @@ def ocr_azure(image_url):
         time.sleep(1)
 
     final_text = ''
+    previous_bound = 0
     # Print the detected text, line by line
     if read_result.status == OperationStatusCodes.succeeded:
         for text_result in read_result.analyze_result.read_results:
             for line in text_result.lines:
                 print(line.text)
-                final_text += line.text + '\n'
                 print(line.bounding_box)
+                # print(line.bounding_box[1], line.bounding_box[7], previous_bound)
+                if line.bounding_box[1] - previous_bound > 10: # note the hardcoded paragraphing size
+                    final_text += '\n' + line.text + '\n' # to 'paragraph' the text
+                else:
+                    final_text += line.text + '\n'
+                previous_bound = line.bounding_box[7]
     print(
     '''
     END - Read File - remote
