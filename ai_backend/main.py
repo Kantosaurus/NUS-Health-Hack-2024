@@ -19,7 +19,7 @@ raw_text = ocr_azure(image_url)
 # Cleanup PII from text with Azure API using cleanup.py
 ######
 clean_text = cleanup(raw_text)
-print(clean_text + '\n\n\n')
+print('\n===========START OF CLEANED TEXT===========\n' + clean_text + '\n===========END OF CLEANED TEXT===========\n')
 
 
 ###### 
