@@ -2,6 +2,8 @@ import ocr
 from ocr_azure import ocr_azure
 from cleanup import cleanup
 from openai import OpenAI
+import csv
+import os
 
 # ###### 
 # # Obtain text from image using ocr.py
@@ -38,13 +40,32 @@ completion = client.chat.completions.create(
     Therefore, you are to identify such terms and provide a description in vocabulary understood by consumers who are non-medical professionals. The description should be succinct and also capture the context of the report.
     The description will later be used in a web-based application, in which patients can hover over medical terms to read a description that is understandable by them. Do not reuse the same word when explaining terms.
 
-    The output we require is in the form of a python dictionary {keyphrase1: description, keyphrase2: description}.
+    The output we require is in the form: 'first keyphrase', 'description of first keyphrase', 'second keyphrase2', 'description of second keyphrase', which will then be written to a csv file.
     """},
 
     {"role": "user", "content": clean_text}
-  ]
+  ],
+  seed=2 # to fix the seed to get a semi-deterministic output
 )
 print('SUCCESSFULLY OBTAINED CHATGPT OUTPUT.')
 
 chatgpt_output = completion.choices[0].message.content
 print(chatgpt_output) 
+
+
+###### 
+# Sets the relative file path so that it can find keywords.csv
+######
+
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
+###### 
+# Write ChatGPT output to keywords.csv
+######
+with open('keywords.csv', 'w') as csv_file:
+    writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
+    writer.writerow([chatgpt_output])
+print("WROTE OUTPUT TO keywords.csv")
+print("=====END OF OPERATION (main.py)=====")
