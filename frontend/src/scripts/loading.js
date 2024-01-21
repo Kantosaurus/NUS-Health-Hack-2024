@@ -1,10 +1,9 @@
 //assumes that file_read is the text from ocr
 const file = require('fs');
 let result;
-fs.readFile("ocr.txt", (err, output) => {
-    if (err) throw err;
-    result = output.toString().split('\n');
-});
+function getDoc() {
+    fetch("/api/ocrupload")
+}
 //write page according to <p> tag
 const div = document.getElementById("mainContent");
 for (item in result) {
