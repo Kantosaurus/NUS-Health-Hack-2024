@@ -1,9 +1,10 @@
 import React from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Outlet, Link } from "react-router-dom";
 const navigation = [
-  { name: 'Home', href: './index.html', current: true },
-  { name: 'About Us', href: './about.html', current: false },
+  { name: 'Home', to: '/', current: true },
+  { name: 'About Us', to: '/about', current: false },
 ]
 
 function classNames(...classes) {
@@ -40,9 +41,9 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-10">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className={classNames(
                           item.current ? 'bg-sky-600 text-white' : 'text-slate-50 hover:bg-sky-400 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
@@ -50,18 +51,18 @@ export default function Navbar() {
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr- sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
-                <a href="./upload.html">
+                <Link to="/upload">
                   <button
                     className="rounded-full h-10 w-40 bg-violet-400 p-1 text-slate-100 hover:text-white hover:bg-violet-600 focus:outline-none"
                     >Upload a file
                   </button>
-                </a>
+                </Link>
 
                 {/* Profile dropdown */}
                 

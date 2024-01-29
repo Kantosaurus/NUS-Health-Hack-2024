@@ -1,13 +1,13 @@
 import React from "react"
 import Navbar from "./components/nav.jsx"
 import Footer from "./components/footer.jsx"
-import UploadSect from "./components/upload.jsx"
-export default function App() {
+import { Outlet } from "react-router-dom"
+export default function Layout() {
   return (
       <div>
         <Navbar/>
-        <UploadSect/>
         <Footer/>
+        <Outlet />
       </div>
   )
 }
