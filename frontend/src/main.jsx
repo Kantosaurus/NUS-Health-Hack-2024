@@ -1,9 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './Layout.jsx';
+import UploadPage from './Upload_page.jsx';
+import Home from "./Home.jsx";
 import './assets/tailwind.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route index element ={<Home />}/>
+        <Route path="/upload" element={<UploadPage/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 )
