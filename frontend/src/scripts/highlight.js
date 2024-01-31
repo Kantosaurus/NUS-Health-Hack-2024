@@ -16,6 +16,7 @@ async function readAndParseFile() {
 
 readAndParseFile();
 
+
 //<button>
 //alternate every 2 entries to get the keyword and the meaning 
 //inserts 

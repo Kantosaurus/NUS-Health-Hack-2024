@@ -1,6 +1,7 @@
     import React, { useState } from "react"
 
     export default function UploadSect() {
+        const SERVER_IP = "http://127.0.0.1:5000"
         const handleUpload = () => {
             const file = event.target.files;
             if (file[0].type==="image/png" || file[0].type==="image/jpg") renderButton();
@@ -11,6 +12,31 @@
             event.preventDefault();
             resetButton();
             wait_text();
+            uploadFile();
+        }
+        function uploadFile() {
+            // this function handles the uploading of the image file to the flask api server (hosted locally and each file)
+            // is found and deleted.
+            const image_input = document.getElementById("image_upload");
+            if (image_input.files.length > 0) {
+                const image = image_input.files[0];
+                //Use formData api to call
+                const formData = new FormData();
+                formData.append("image", image);
+                console.log(image);
+                fetch(SERVER_IP + "/upload", {
+                    method: "POST",
+                    body: formData,
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text(); // Or response.text() if your server responds with text
+                })
+                // for debugging purposes, can remove lter
+                .then(data => console.log("Success: ", data))
+                .catch(error => console.error('Error: ', error));
+            }
             //next should be api_call then a rendering of the web page
         }
         const renderButton = () => {
@@ -49,7 +75,7 @@
                             file:rounded-full file:border-0
                             file:text-sm file:font-semibold
                             file:bg-violet-50 file:text-violet-600
-                            hover:file:bg-violet-100" 
+                            hover:file:bg-violet-100" id = "image_upload" name="image"
                             onChange={handleUpload}
                             />
                     </label>
