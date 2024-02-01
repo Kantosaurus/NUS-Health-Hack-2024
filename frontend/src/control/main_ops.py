@@ -24,7 +24,6 @@ def fileToText(image_url):
   return clean_text
 
 
-
 ###### 
 # CHATGPT IMPLEMENTATION
 # To obtain keywords and it's definitions
