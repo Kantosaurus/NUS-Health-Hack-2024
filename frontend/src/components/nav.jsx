@@ -13,14 +13,15 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-emerald-500">
+    <Disclosure as="nav" className="bg-white shadow-md border-b border-gray-400">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+            <div className="relative flex h-24 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-slate-50 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black outline-black hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -30,23 +31,23 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+              <div className="flex flex-1 items-center justify-left sm:items-stretch sm:justify-start p-12 sm:p-6">
+                <div className="flex flex-shrink-0 items-left">
                   <img
-                    className="h-12 w-auto"
-                    src="src/assets/newLogo.png"
-                    alt="HealthHack Team Leyew"
+                    className="h-20 w-auto"
+                    src="src/assets/MediSimple.png"
+                    alt="HealthHack 2024"
                   />
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-10">
+                <div className="hidden md:flex sm:ml-8 flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                  <div className="flex space-x-3 items-center">
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
                         to={item.to}
                         className={classNames(
-                          item.current ? 'bg-sky-600 text-white' : 'text-slate-50 hover:bg-sky-400 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current ? 'bg-white text-black hover:bg-green-700 hover:text-slate-100' : 'bg-white text-black hover:bg-green-700 hover:text-slate-100',
+                          'rounded-md px-3 py-3 text-ml font-ml'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -56,22 +57,22 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr- sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+              <div className="absolute inset-y-3 right-0 flex items-center pr- sm:static sm:inset-auto sm:ml-6 sm:pr-8">
                 <Link to="/upload">
                   <button
-                    className="rounded-full h-10 w-40 bg-violet-400 p-1 text-slate-100 hover:text-white hover:bg-violet-600 focus:outline-none"
+                    className="rounded-3xl h-12 w-40 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white p-1 focus:outline-none transition-colors duration-150 ease-in-out text-ml font-medium"
                     >Upload a file
                   </button>
                 </Link>
 
                 {/* Profile dropdown */}
-                
+              
               </div>
             </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
+            <div className="space-y-3 px-3 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
@@ -79,7 +80,7 @@ export default function Navbar() {
                   href={item.href}
                   className={classNames(
                     item.current ? 'bg-gray-900 text-white' : 'text-slate-50 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    'block rounded-md px-3 py-3 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
