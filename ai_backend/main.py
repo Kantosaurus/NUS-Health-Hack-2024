@@ -20,12 +20,9 @@ from cleanText import foo
 ######
 def fileToText(image_url):
   raw_text = ocr_azure(image_url)
-  print(type(raw_text))
-  print(os.getcwd())
   clean_text = foo(raw_text)
-  print("leyew")
-  print('\n===========START OF CLEANED TEXT===========\n' + clean_text + '\n===========END OF CLEANED TEXT===========\n')
-  #return clean_text
+  #print('\n===========START OF CLEANED TEXT===========\n' + clean_text + '\n===========END OF CLEANED TEXT===========\n')
+  return [clean_text, raw_text]
 
 ###### 
 # CHATGPT IMPLEMENTATION
@@ -61,17 +58,17 @@ def textToGPT(text):
   ###### 
   # Sets the relative file path so that it can find keywords.csv
   ######
-  abspath = os.path.abspath(__file__)
-  dname = os.path.dirname(abspath)
-  os.chdir(dname)
+  
 
   ###### 
   # Write ChatGPT output to keywords.csv
   ######
-  with open('keywords.csv', 'w') as csv_file:
+  curr_dir = Path(__file__).parent.parent
+  print(f"{curr_dir}/frontend/src/control")
+  curr_dir=f"{curr_dir}/frontend/src/control"
+  with open(f'{curr_dir}/keywords.csv', 'w+') as csv_file:
       writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
       writer.writerow([chatgpt_output])
   print("WROTE OUTPUT TO keywords.csv")
   print("=====END OF OPERATION (main.py)=====")
 
-print(fileToText("https://i.imgur.com/0YqHuBs.png"))

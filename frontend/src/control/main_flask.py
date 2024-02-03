@@ -19,7 +19,7 @@ from main import fileToText, textToGPT
 
 app= Flask(__name__)
 CORS(app)
-#modify accordingly
+#modify accord  ingly
 BUCKET_NAME = "health_hack_trial_reports"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok= True)
@@ -38,7 +38,8 @@ def upload_image():
         _clear_uploads(UPLOAD_FOLDER_PATH)
         #optionally add file validation, but already added in the upload jsx
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(filepath)
+        file.save(f"{script_dir}/{filepath}")
+        print(filepath)
         OCR_image(UPLOAD_FOLDER_PATH)
         return jsonify({'message': 'File received successfully',"code":200})
 
@@ -74,7 +75,16 @@ def OCR_image(upload_folder_path):
             #not sure if will work
             #pass this to the function
             file_name = file_list[0].split("\\")[-1]
-            fileToText(_upload_file_cloud(BUCKET_NAME, upload_folder_path, file_name, file_name))
-            
+            outputText = fileToText(_upload_file_cloud(BUCKET_NAME, 
+                                                       upload_folder_path, 
+                                                       file_name, file_name))
+            #save this output to a txt file that that can read by line, segment with p
+            with open(f"{UPLOAD_FOLDER_PATH}/output.txt", 'w+') as f:
+                f.write(outputText[1])
+            highlight_words(outputText[0])
+def highlight_words(input_text):
+    textToGPT(input_text)
+    #generates the keywords csv
+    
 if __name__ == '__main__':
     app.run(debug=True)
