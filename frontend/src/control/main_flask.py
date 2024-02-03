@@ -3,8 +3,13 @@ from flask_cors import CORS
 import os
 import datetime
 import glob
-from main_ops import fileToText, textToGPT
-from google.cloud import storage
+# from google.cloud import storage
+import sys
+
+# get path to find ai_backend/main.py
+parent_directory = os.path.abspath('..')
+sys.path.append(parent_directory)
+from ai_backend.main import fileToText, textToGPT
 
 app= Flask(__name__)
 CORS(app)

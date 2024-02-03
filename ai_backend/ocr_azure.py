@@ -13,13 +13,20 @@ import os
 from PIL import Image
 import sys
 import time
+import os
+from dotenv import load_dotenv
+
+# retrieve keys from .env file
+load_dotenv()
+AZURE_OCR_API_KEY = os.getenv('AZURE_OCR_API_KEY')
+AZURE_OCR_ENDPOINT = os.getenv('AZURE_OCR_ENDPOINT')
 
 '''
 Authenticate
 Authenticates your credentials and creates a client.
 '''
-subscription_key = "410c6d7640e246729e5e67eb42ab4d64"
-endpoint = "https://healthhack2024-ocr.cognitiveservices.azure.com/"
+subscription_key = AZURE_OCR_API_KEY
+endpoint = AZURE_OCR_ENDPOINT
 
 computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
 '''
