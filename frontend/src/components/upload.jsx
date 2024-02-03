@@ -86,7 +86,7 @@
         const [content, setContent] = useState([init_content]);
         return (
             <div>
-                <form className="flex flex-col justify-center items-center bg-slate-300 h-screen">
+                <form className="flex flex-col justify-center items-center bg-slate-200 h-screen">
                     <div id="initialContent">
                         {content.map(element => element)}
                     </div>

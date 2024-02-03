@@ -2,7 +2,7 @@
 /ai_backend/__pycache__
 /ai_backend/.DS_Store
 ../.DS_Store
-
+.DS_Store
 
 # Logs
 logs
