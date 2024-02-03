@@ -79,7 +79,7 @@ export default function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-slate-50 hover:bg-gray-700 hover:text-white',
+                    item.current ? 'bg-gray-900 text-slate-50 hover:bg-gray-700 hover:text-white transition-colors duration-150 ease-in-out' : 'bg-gray-900 text-slate-50 hover:bg-gray-700 hover:text-white transition-colors duration-150 ease-in-out',
                     'block rounded-md px-3 py-3 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
