@@ -3,7 +3,7 @@ from flask_cors import CORS
 import os
 import datetime
 import glob
-from google.cloud import storage
+# from google.cloud import storage
 import sys
 
 # get path to find ai_backend/main.py
