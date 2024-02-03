@@ -3,26 +3,30 @@ from flask_cors import CORS
 import os
 import datetime
 import glob
-# from google.cloud import storage
+from google.cloud import storage
 import sys
+from pathlib import Path
 
 # get path to find ai_backend/main.py
-parent_directory = os.path.abspath('..')
-sys.path.append(parent_directory)
-from ai_backend.main import fileToText, textToGPT
+script_dir = Path(__file__).parent
+GOOGLE_CLOUD_KEY = f'{script_dir}/googleKey.json'
+UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER_PATH = f'{script_dir}/uploads'
+ai_path = f"{script_dir.parent.parent.parent}/ai_backend"
+sys.path.append(str(ai_path))
+
+from main import fileToText, textToGPT
 
 app= Flask(__name__)
 CORS(app)
 #modify accordingly
-GOOGLE_CLOUD_KEY = './googleKey.json'
-UPLOAD_FOLDER = 'uploads'
-UPLOAD_FOLDER_PATH = './uploads'
 BUCKET_NAME = "health_hack_trial_reports"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok= True)
 #for privacy reasons remove this but as an added feature
 @app.route('/upload', methods = ['POST'])
 def upload_image():
+    print('leyew')
     #return("Hello, it's my flask API")
     if 'image' not in request.files:
         return jsonify({'error': 'No file part', "code": 400})

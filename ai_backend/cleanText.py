@@ -10,6 +10,11 @@ from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 
 # Authenticate the client using your key and endpoint 
+def foo(text_to_clean):
+    cleaned_text = pii_recognition_example(client, text_to_clean)
+    print("SUCCESSFULLY CLEANED TEXT WITH AZURE API.")
+    return cleaned_text
+
 def authenticate_client():
     ta_credential = AzureKeyCredential(key)
     text_analytics_client = TextAnalyticsClient(
@@ -36,11 +41,7 @@ def pii_recognition_example(client, input_text):
         #     print("\tConfidence Score: {}".format(entity.confidence_score))
         #     print("\tOffset: {}".format(entity.offset))
         #     print("\tLength: {}".format(entity.length))
-
-def cleanup(text_to_clean):
-    cleaned_text = pii_recognition_example(client, text_to_clean)
-    print("SUCCESSFULLY CLEANED TEXT WITH AZURE API.")
-    return cleaned_text
+    
 
 
 

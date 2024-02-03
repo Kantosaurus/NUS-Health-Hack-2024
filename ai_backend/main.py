@@ -4,13 +4,13 @@ import csv
 import os
 import sys
 from dotenv import load_dotenv
-
+from pathlib import Path
 # set path back to current path (due to change by main_flask.py which calls main.py)
-parent_directory = os.path.abspath('')
-sys.path.append(parent_directory)
-from ocr_azure import ocr_azure
-from cleanup import cleanup
 
+from ocr_azure import ocr_azure
+from cleanText import foo
+
+#should resolve to ai_backend
 ###### 
 # Obtain text from image using Azure API with ocr_azure.py
 ######
@@ -20,9 +20,12 @@ from cleanup import cleanup
 ######
 def fileToText(image_url):
   raw_text = ocr_azure(image_url)
-  clean_text = cleanup(raw_text)
+  print(type(raw_text))
+  print(os.getcwd())
+  clean_text = foo(raw_text)
+  print("leyew")
   print('\n===========START OF CLEANED TEXT===========\n' + clean_text + '\n===========END OF CLEANED TEXT===========\n')
-  return clean_text
+  #return clean_text
 
 ###### 
 # CHATGPT IMPLEMENTATION
@@ -70,3 +73,5 @@ def textToGPT(text):
       writer.writerow([chatgpt_output])
   print("WROTE OUTPUT TO keywords.csv")
   print("=====END OF OPERATION (main.py)=====")
+
+print(fileToText("https://i.imgur.com/0YqHuBs.png"))
