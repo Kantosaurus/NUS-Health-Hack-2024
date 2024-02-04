@@ -1,8 +1,11 @@
 import React from "react";
 import myText from "./control/uploads/output.txt?raw";
 import keywords from "./control/keywords.csv?raw";
+import { useAnnotation } from './AnnotationContext';
+
 export default function LoadReport() {
     window.globalNumber = 0;
+    const {setAnnotation} = useAnnotation();
     const lines = myText.split('\n');
     // Assuming keywords are separated by ~ and potentially wrapped in quotes
     const words = keywords.replaceAll("'", "").replaceAll('"', "").split("~");
@@ -11,19 +14,19 @@ export default function LoadReport() {
             {lines.map((line, lineIndex) => (
                 <p key={lineIndex}> 
                   {/* Process each line to highlight keywords */}
-                  {highlightWordsInLine(line, words)}
+                  {highlightWordsInLine(line, words, setAnnotation, words)}
                 </p>
             ))}
         </div>
     );
 }
 
-function highlightWordsInLine(line, keywords, bringUpBox) {
+function highlightWordsInLine(line, keywords, state, word_arr) {
     let elements = [];
     let lastIndex = 0; // Track the index of the char of the string we are at
   
     keywords.forEach((keyword, index) => {
-      if (index % 2 === 0) { // Assuming you're interested in even-index keywords
+      if (index % 2 === 0) { 
         const regex = new RegExp(`(${keyword})`, 'gi');
         let match;
   
@@ -39,7 +42,7 @@ function highlightWordsInLine(line, keywords, bringUpBox) {
               <button
                 id={`${index}`}
                 name={`${window.globalNumber}`}
-                onClick={(event) => bringUpBox(event, index, curr_num)}>
+                onClick={(event) => getExplaination(event, index, state, word_arr)}>
                 {match[0]}
               </button>
             </mark>
@@ -57,5 +60,16 @@ function highlightWordsInLine(line, keywords, bringUpBox) {
     return <span>{elements}</span>;
   }
   
-// function bringUpBox(
-
+function getExplaination(event, index, setAnnotation, word_arr) {
+    const element_rect = event.target.getBoundingClientRect();
+    const new_position = {
+        x: element_rect.left + window.scrollX, 
+        y: element_rect.bottom + window.scrollY 
+    };
+    const content = word_arr[index + 1];
+    setAnnotation(prevAnnotation => ({
+        ...prevAnnotation,
+        content : content,
+        position: new_position,
+        isVisible: true,}));
+}

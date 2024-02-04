@@ -31,7 +31,7 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    return response.text(); // Or response.text() if your server responds with text
+                    return response.text(); 
                 })
                 // for debugging purposes, can remove lter
                 .then(data => console.log("Success: ", data))
@@ -50,14 +50,21 @@
                 setButtons([newButton]);
             }
             const wait_text = () => {
-                const text = (
-                    <div key ={buttons.length}>
-                <p>Please hold on as we process your document...</p>
-                <p>In the meantime, feel free to grab a cup of coffee or tea!☕</p>
-                </div>
+                const button = (
+                    <>
+                        <button className="flex justify-center items-center">
+                            <a key={buttons.length + 9} href="/report">View your report</a>
+                        </button>
+                    </>
             )
-            setContent([]);
-            setButtons([text]);
+                const text = (
+                    <>
+                        <p>You should be redirected to your report in 5 seconds</p>
+                        <p> Alternatively, click on the button below</p>
+                    </>
+                )
+            setContent([text]);
+            setButtons([button]);
         }
         const resetButton = () => {
             setButtons([]);
@@ -84,13 +91,14 @@
         )
         const [buttons, setButtons] = useState([]);
         const [content, setContent] = useState([init_content]);
+        const [division, setDivision] = useState([<div id="uploadButton" className="mt-10 justify-center items-center"></div>])
         return (
             <div>
                 <form className="flex flex-col justify-center items-center bg-slate-200 h-screen">
                     <div id="initialContent">
                         {content.map(element => element)}
                     </div>
-                    <div id="uploadButton" className="mt-10">
+                    <div id="uploadButton" className="mt-10 justify-center items-center">
                         {buttons.map(button => button)}
                     </div>
                 </form>
