@@ -9,6 +9,7 @@ from pathlib import Path
 
 # get path to find ai_backend/main.py
 script_dir = Path(__file__).parent
+IMPORTANTKEY = "DEL-COMMAND"
 GOOGLE_CLOUD_KEY = f'{script_dir}/googleKey.json'
 UPLOAD_FOLDER = 'uploads'
 UPLOAD_FOLDER_PATH = f'{script_dir}/uploads'
@@ -77,6 +78,7 @@ def OCR_image(upload_folder_path):
             outputText = fileToText(_upload_file_cloud(BUCKET_NAME, 
                                                        upload_folder_path, 
                                                        file_name, file_name))
+            print(outputText)
             #save this output to a txt file that that can read by line, segment with p
             with open(f"{UPLOAD_FOLDER_PATH}/output.txt", 'w+') as f:
                 f.write(outputText[1])
@@ -84,7 +86,25 @@ def OCR_image(upload_folder_path):
 def highlight_words(input_text):
     textToGPT(input_text)
     #generates the keywords csv
-    
+
+@app.route('/endsession', methods = ["POST"])    
+def clear_everything():
+    print("leyew")
+    if not request.is_json:
+        return jsonify({"error" : "Request must be JSON"}), 400
+    data = request.get_json()
+    print(data)
+    if IMPORTANTKEY not in data:
+        return jsonify({"error": "Missing crucial key in the payload."}), 402
+    else:
+        print("leyew succeeded")
+        for file in glob.glob(f"{UPLOAD_FOLDER_PATH}/*.png"):
+            os.remove(file)
+        with open("keywords.csv", "w+") as f:
+            f.write("")
+        with open(f"{UPLOAD_FOLDER_PATH}/output.txt", "w+"):
+            f.write("")
+        return jsonify({"message": "Request processed successfully"}), 200
     
 if __name__ == '__main__':
     app.run(debug=True)

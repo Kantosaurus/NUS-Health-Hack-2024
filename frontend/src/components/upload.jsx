@@ -1,13 +1,32 @@
-    import React, { useState } from "react"
-
+    import React, {useState, useEffect } from "react";
+    import { useNavigate } from "react-router-dom";
+    
     export default function UploadSect() {
-        const SERVER_IP = "http://localhost:5000"
+        const SERVER_IP = "http://localhost:5000";
+        const navigate = useNavigate();
+        const [countdown, setCountdown] = useState(null);
+        useEffect(() => {
+            if (countdown === 0) {
+                console.log('leyew');
+                navigate('/report');
+                //should be pushing
+            } else if (countdown > 0) {
+                const timer = setTimeout(() => setCountdown(countdown - 1), 1000); 
+                return () => clearTimeout(timer);
+            }
+        }, [countdown, navigate]);
         const handleUpload = () => {
             const file = event.target.files;
-            if (file[0].type==="image/png" || file[0].type==="image/jpg") renderButton();
-            else resetButton();
+            if (file[0].type==="image/png" || file[0].type==="image/jpg"){
+                renderButton();
+            }
+            else {
+                alert("Only PNG or JPG files are allowed.");
+                resetButton();
+            }
             //subsequently render a upload button
-        }
+        };
+
         function handleRequest(event) {
             event.preventDefault();
             resetButton();
@@ -37,7 +56,8 @@
                 .then(data => console.log("Success: ", data))
                 .catch(error => console.error('Error: ', error));
             }
-            //next should be api_call then a rendering of the web page
+            //here for countdown
+            setCountdown(15);
         }
         const renderButton = () => {
             const newButton = (
@@ -52,15 +72,12 @@
             const wait_text = () => {
                 const button = (
                     <>
-                        <button className="flex justify-center items-center">
-                            <a key={buttons.length + 9} href="/report">View your report</a>
-                        </button>
                     </>
             )
-                const text = (
-                    <>
-                        <p>You should be redirected to your report in 5 seconds</p>
-                        <p> Alternatively, click on the button below</p>
+            const text = (
+                <>
+                        <p>Please hold on as we process your document...</p>    
+                        <p>In the meantime, feel free to grab a cup of coffee or tea!☕</p>
                     </>
                 )
             setContent([text]);
@@ -91,11 +108,12 @@
         )
         const [buttons, setButtons] = useState([]);
         const [content, setContent] = useState([init_content]);
-        const [division, setDivision] = useState([<div id="uploadButton" className="mt-10 justify-center items-center"></div>])
         return (
             <div>
                 <form className="flex flex-col justify-center items-center bg-slate-200 h-screen">
                     <div id="initialContent">
+                    {countdown !== null && (
+                    <div>Redirecting in {countdown} seconds...</div> )}
                         {content.map(element => element)}
                     </div>
                     <div id="uploadButton" className="mt-10 justify-center items-center">
@@ -105,4 +123,5 @@
             </div>
         );
     }
+
     

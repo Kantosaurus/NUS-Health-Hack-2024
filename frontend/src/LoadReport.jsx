@@ -2,13 +2,15 @@ import React from "react";
 import myText from "./control/uploads/output.txt?raw";
 import keywords from "./control/keywords.csv?raw";
 import { useAnnotation } from './AnnotationContext';
-
+const DELETE_COMMAND = 'PURGE_ALL';
+const SERVER_IP = "http://localhost:5000";
 export default function LoadReport() {
     window.globalNumber = 0;
     const {setAnnotation} = useAnnotation();
     const lines = myText.split('\n');
     // Assuming keywords are separated by ~ and potentially wrapped in quotes
     const words = keywords.replaceAll("'", "").replaceAll('"', "").split("~");
+    //deleteCommand(SERVER_IP, DELETE_COMMAND);
     return (
         <div className="flex-col text-center w-full pr-16 leading-loose">
             {lines.map((line, lineIndex) => (
@@ -42,7 +44,7 @@ function highlightWordsInLine(line, keywords, state, word_arr) {
               <button
                 id={`${index}`}
                 name={`${window.globalNumber}`}
-                onClick={(event) => getExplaination(event, index, state, word_arr)}>
+                onClick={(event) => getExplanation(event, index, state, word_arr)}>
                 {match[0]}
               </button>
             </mark>
@@ -60,7 +62,7 @@ function highlightWordsInLine(line, keywords, state, word_arr) {
     return <span>{elements}</span>;
   }
   
-function getExplaination(event, index, setAnnotation, word_arr) {
+function getExplanation(event, index, setAnnotation, word_arr) {
     const element_rect = event.target.getBoundingClientRect();
     const new_position = {
         x: element_rect.left + window.scrollX, 
@@ -72,4 +74,20 @@ function getExplaination(event, index, setAnnotation, word_arr) {
         content : content,
         position: new_position,
         isVisible: true,}));
+}
+function deleteCommand(server_ip, delete_code) {
+    fetch(server_ip + "/endsession", {
+        method: "POST",
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            [delete_code] : 1
+        }),
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text(); 
+    })
 }
