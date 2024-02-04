@@ -16,3 +16,8 @@ export default function HighlightWords() {
         </div>
     )
 }
+function generateAnnotationBox(text) {
+    const Annotation = () => {
+        
+    }
+}

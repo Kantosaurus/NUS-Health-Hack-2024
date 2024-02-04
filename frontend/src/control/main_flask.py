@@ -26,7 +26,6 @@ os.makedirs(UPLOAD_FOLDER, exist_ok= True)
 #for privacy reasons remove this but as an added feature
 @app.route('/upload', methods = ['POST'])
 def upload_image():
-    print('leyew')
     #return("Hello, it's my flask API")
     if 'image' not in request.files:
         return jsonify({'error': 'No file part', "code": 400})
