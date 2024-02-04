@@ -1,7 +1,7 @@
     import React, { useState } from "react"
 
     export default function UploadSect() {
-        const SERVER_IP = "http://127.0.0.1:5000"
+        const SERVER_IP = "http://localhost:5000"
         const handleUpload = () => {
             const file = event.target.files;
             if (file[0].type==="image/png" || file[0].type==="image/jpg") renderButton();

@@ -1,55 +1,55 @@
-SorterB
-1
-2
-3
-4
-5
-6
-7
-8
-9
-Size
-400
-800
-3200
-49000
-800
-800
-28000
-28000
-28000
-Time
-427405
-910556
-4044748
-46575420
-888100
-897604
-44760424
-4.4E+07
-4.6E+07
-Sorted
-TRUE
-TRUE
-TRUE
-TRUE
-TRUE
-TRUE
-TRUE
-FALSE
-TRUE
-Stable
-FALSE
-FALSE
-FALSE
-FALSE
-FALSE
-FALSE
-FALSE
-FALSE
-FALSE
-Special case
-Ordered
-Reversed
-Ordered
-Reversed
+
+DIAGNOSTIC X-RAY CONSULTATION SERVICES�
+GARY A. LONGMUIR, M.App.Sc ., D.C ., Ph.D ., D.A.C.B.R.
+2525 W. Carefree Highway, Building 2A, Suite 114
+Radiology
+Phoenix, AZ 85085-9302
+Telephone: (602) 274-3331
+Diplomate, American Chiropractic Board of Radiology
+Fax: (602) 279-4445
+Fellow, the American Chiropractic College of Radiology
+www.diagnosticx-ray.com
+
+Patient's Name: Ms. XXXX XXXXXX
+
+Referred by: Dr. R. Schaer
+
+Examination: Right knee MRI
+
+Date Taken: 2/2/16
+
+Date of Report: 2/2/16
+
+Patient's Complaint: Right knee pain and stiffness.
+
+Patient's History: No recent trauma reported.
+
+Protocol: Coronal T1-weighted, IR, sagittal T1-weighted, T2-weighted and axial gradient echo
+images of the right knee were obtained.
+
+Findings:
+
+MRI examination of the right knee reveals no evidence of bony contusion or acute fracture.
+Medial and lateral joint compartment height are well preserved.
+
+The retropatellar joint space is diminished. The articular cartilage is thinned adjacent to the
+vertical ridge of the patella, appearing irregular and ragged along the medial facet (series #7,
+instance #8). A degenerative cyst measuring 9 x 5 x 6 mm is present at the midline of the
+posterior patellar surface, lateral to the vertical ridge (series #7, instance #6). The quadriceps
+tendon is mildly thickened and irregular. There is no evidence of intrameniscal signal or frank
+tear. The anterior and posterior cruciate ligaments are of normal signal and contour. The lateral
+and medial collateral ligaments are well maintained and of normal signal. There is minimal
+intra-articular fluid signal with fluid within the medial aspect of the suprapatellar bursa. There is
+minimal fluid within the prepatellar bursa, laterally.
+
+Impressions:
+
+1. No evidence of acute fracture or bony contusion.
+
+2. Grade 4 chondromalacia patella with subchondral cyst formation as described.
+
+3. Interprofessional referral to consider arthroscopic debridement is indicated.
+
+4. Thickened and irregular quadriceps tendon compatible with a previous traumatic event.
+
+5. Intra-articular fluid which is likely physiologic.
