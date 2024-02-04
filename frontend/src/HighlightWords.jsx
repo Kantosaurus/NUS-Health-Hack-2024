@@ -16,8 +16,10 @@ export default function HighlightWords() {
         </div>
     )
 }
-function generateAnnotationBox(text) {
-    const Annotation = () => {
-        
-    }
-}
+// function generateAnnotationBox(text) {
+//     const Annotation = () => {
+//         const [showAnnotation, setShowAnnotation] = useState(false);
+//         const [annotationPosition, setAnnotationPosition]
+
+//     }
+// }
