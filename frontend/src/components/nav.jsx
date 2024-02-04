@@ -4,7 +4,6 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Outlet, Link } from "react-router-dom";
 const navigation = [
   { name: 'Home', to: '/', current: true },
-  { name: 'About Us', to: '/about', current: false },
 ]
 
 function classNames(...classes) {
@@ -35,7 +34,7 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-left">
                   <img
                     className="h-20 w-auto"
-                    src="src/assets/MediSimple.png"
+                    src="/MediSimple.png"
                     alt="HealthHack 2024"
                   />
                 </div>

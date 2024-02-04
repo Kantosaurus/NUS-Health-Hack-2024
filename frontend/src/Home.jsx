@@ -1,10 +1,9 @@
-import React from "react"
-
+import React from "react";
+import main_image from "../public/main.png"
 export default function Home() {
     return (
-        <>
-        <h1>Hello there, this is a placeholder</h1>
-        <p> Honestly, I've been very busy and I didn't spend much time on this</p>
-        </>
-    )
+        <div>
+            <img src= {main_image} alt = "Let's make healthcare simpler!" />
+        </div>
+    );
 }
