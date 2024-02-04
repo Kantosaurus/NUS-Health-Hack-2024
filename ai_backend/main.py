@@ -43,6 +43,8 @@ def textToGPT(text):
       Therefore, you are to identify such terms and provide a description in vocabulary understood by consumers who are non-medical professionals. The description should be succinct and also capture the context of the report.
       The description will later be used in a web-based application, in which patients can hover over medical terms to read a description that is understandable by them. Do not reuse the same word when explaining terms.
 
+      The key-phrase should not exceed 70 characters in length.
+
       The output we require is in the form: 'first keyphrase'~'description of first keyphrase'~'second keyphrase2'~'description of second keyphrase' which will then be written to a csv file.
       """},
 
