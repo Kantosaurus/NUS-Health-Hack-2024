@@ -6,7 +6,7 @@ import UploadPage from './Upload_page.jsx';
 import Home from "./Home.jsx";
 import LoadReport from './loadReport.jsx';
 import './assets/tailwind.css';
-import HighlightWords from './HighlightWords.jsx';
+import Report from './Report.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route index element ={<Home/>}/>
         <Route path="/upload" element={<UploadPage/>}/>
         <Route path= "/result" element = {<LoadReport/>}/>
-        <Route path = "/excuses" element = {<HighlightWords/>}/>
+        <Route path = "/report" element = {<Report/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
