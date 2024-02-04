@@ -41,9 +41,9 @@
         }
         const renderButton = () => {
             const newButton = (
-                <button key= {buttons.length} className="rounded-none h-10 w-40
-                bg-blue-400 p-1 focus:outline-none
-                text-slate-200 hover:text-white hover:bg-blue-600"
+                <button key= {buttons.length} className="rounded-md h-10 w-40
+                bg-green-600 p-1 focus:outline-none
+                text-slate-200 hover:text-white hover:bg-green-800"
                 onClick={(event) => handleRequest(event)}>Upload</button>
                 )
                 
