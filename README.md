@@ -1,5 +1,5 @@
 # NUS-Health-Hack-2024
-AI to analyse X-ray scans and produce a document outlining the likelihood of specific diseases, along with recommended courses of action for the patient.
+AI to analyse medical reports, using OCR and GPT technologies to highlight key medical terms. With annotations containing the meaning for each of the key terms identified.
 
 Copyright © NTURejects 2024
 
